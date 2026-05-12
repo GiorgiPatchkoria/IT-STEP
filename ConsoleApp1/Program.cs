@@ -4,47 +4,73 @@
     {
         static void Main(string[] args) {
 
-            #region DavalebaN1
+            #region Davaleba N1
+            
+            string userName = "admin";
+            string password = "1234";
 
-            Console.WriteLine("შეიყვანეთ ასაკი:");
-            string strAge = Console.ReadLine();
-            int intAge = int.Parse(strAge);
-            bool isAdult = intAge >= 18;
-            Console.WriteLine(isAdult ? "გილოცავთ! ხმის მიცემის უფლება გაქვთ" : "სამწუხაროთ ხმის მიცემის უფლება ჯერ არ გაქვთ");
+            Console.Write("enter username:");
+            string userNameInp = Console.ReadLine();
+            Console.Write("enter password:");
+            string userPassInp = Console.ReadLine();
 
-            #endregion
-
-            #region DavalebaN2
-
-            Console.WriteLine("შეიყვანეთ პირველი რიცხვი:");
-            int number1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("შეიყვანეთ მე-2 რიცხვი:");
-            int number2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("შეიყვანეთ მე-3 რიცხვი:");
-            int number3 = int.Parse(Console.ReadLine());
-
-            if (number1 >= number2 && number1 >= number3) {
-                Console.WriteLine("პირველი რიცხვი მაქსიმალურია წარმოდგენილ რიცხვებს შორის");
-            } else if (number2 >= number1 && number2 >= number3) {
-                Console.WriteLine("მე-2 რიცხვი მაქსიმალურია წარმოდგენილ რიცხვებს შორის");
+            if (userName == userNameInp && password == userPassInp) {
+                Console.WriteLine("Welcome!");
             } else {
-                Console.WriteLine("მე-3 რიცხვი მაქსიმალურია წარმოდგენილ რიცხვებს შორის");
+                Console.WriteLine("Access denied");
             }
 
             #endregion
 
-            #region DavalebaN3
+            #region Davaleba N2
+            int number1;
+            int number2;
+            Console.Write("შეიყვანე პირველი რიცხვი:");
+            bool number1IsGood = int.TryParse(Console.ReadLine(), out number1);
+            Console.Write("შეიყვანე ოპერატორი:");
+            string operation = Console.ReadLine();
+            Console.Write("შეიყვანე მეორე რიცხვი:");
+            bool number2IsGood = int.TryParse(Console.ReadLine(), out number2);
 
-            Console.WriteLine("შეიყვანეთ პირველი რიცხვი:");
-            int ricxvi1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("შეიყვანეთ მე-2 რიცხვი:");
-            int ricxvi2 = int.Parse(Console.ReadLine());
-            int jami = ricxvi1 + ricxvi2;
-
-            if (ricxvi1 == ricxvi2) {
-                jami *= 3;
+            switch (operation)
+            {
+                case "+":
+                    Console.WriteLine(number1 + number2);
+                    break;
+                case "-":
+                    Console.WriteLine(number1 - number2);
+                    break;
+                case "/":
+                    Console.WriteLine(number1 / number2);
+                    break;
+                case "*":
+                    Console.WriteLine(number1 * number2);
+                    break;
             }
-            Console.WriteLine($"ჯამი არის {jami}");
+
+            #endregion
+
+            #region Davaleba N3
+
+            byte age;
+            Console.Write("შეიყვანე ასაკი:");
+            bool correctAge = byte.TryParse(Console.ReadLine(), out age);
+
+            switch(age)
+            {
+                case >= 0 and <= 12:
+                    Console.WriteLine("ბავშვი");
+                    break;
+                case >= 13 and <= 19:
+                    Console.WriteLine("თინეიჯერი");
+                    break;
+                case >= 20 and <= 64:
+                    Console.WriteLine("ზრდასრული");
+                    break;
+                case >= 65:
+                    Console.WriteLine("პენსიონერი");
+                    break;
+            }
 
             #endregion
         }
