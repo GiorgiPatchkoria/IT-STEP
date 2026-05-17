@@ -5,72 +5,67 @@
         static void Main(string[] args) {
 
             #region Davaleba N1
-            
-            string userName = "admin";
-            string password = "1234";
 
-            Console.Write("enter username:");
-            string userNameInp = Console.ReadLine();
-            Console.Write("enter password:");
-            string userPassInp = Console.ReadLine();
+            Console.WriteLine("შეიყვანეთ რიცხვი:");
+            int number1;
+            bool numberIsGood1 = int.TryParse(Console.ReadLine(), out number1);
+            int result1;
 
-            if (userName == userNameInp && password == userPassInp) {
-                Console.WriteLine("Welcome!");
+            if (numberIsGood1) {
+                for (int i = 1; i <= 10; i++) {
+                    result1 = number1 * i;
+                    Console.WriteLine($"{number1} * {i} = {result1}");
+                }
             } else {
-                Console.WriteLine("Access denied");
+                Console.WriteLine("Incorrect Number");
             }
 
             #endregion
 
             #region Davaleba N2
-            int number1;
-            int number2;
-            Console.Write("შეიყვანე პირველი რიცხვი:");
-            bool number1IsGood = int.TryParse(Console.ReadLine(), out number1);
-            Console.Write("შეიყვანე ოპერატორი:");
-            string operation = Console.ReadLine();
-            Console.Write("შეიყვანე მეორე რიცხვი:");
-            bool number2IsGood = int.TryParse(Console.ReadLine(), out number2);
 
-            switch (operation)
-            {
-                case "+":
-                    Console.WriteLine(number1 + number2);
-                    break;
-                case "-":
-                    Console.WriteLine(number1 - number2);
-                    break;
-                case "/":
-                    Console.WriteLine(number1 / number2);
-                    break;
-                case "*":
-                    Console.WriteLine(number1 * number2);
-                    break;
+            for (int i = 1; i <= 4; i++)  {
+                for (int j = 1; j <= 4-i; j++) {
+                    Console.Write(" ");
+                } 
+                for (int h = 1; h <= i; h++) {
+                    Console.Write("* ");
+                }
+                Console.WriteLine();
             }
 
             #endregion
 
             #region Davaleba N3
 
-            byte age;
-            Console.Write("შეიყვანე ასაკი:");
-            bool correctAge = byte.TryParse(Console.ReadLine(), out age);
+            Console.WriteLine("შეიყვანეთ რიცხვი:");
+            int number3;
+            bool numberIsGood3 = int.TryParse(Console.ReadLine(), out number3);
+            int result3 = 0;
 
-            switch(age)
-            {
-                case >= 0 and <= 12:
-                    Console.WriteLine("ბავშვი");
-                    break;
-                case >= 13 and <= 19:
-                    Console.WriteLine("თინეიჯერი");
-                    break;
-                case >= 20 and <= 64:
-                    Console.WriteLine("ზრდასრული");
-                    break;
-                case >= 65:
-                    Console.WriteLine("პენსიონერი");
-                    break;
+            if (numberIsGood3) {
+                for (int i = 1; i < number3; i++)  {
+                    if (i % 2 == 0) {
+                        result3 += i;
+                    }
+                }
+                Console.WriteLine($"ჯამი არის {result3}");
+            } else {
+                Console.WriteLine("Incorrect Number");
             }
+
+            #endregion
+
+            #region Davaleba N4
+
+            Random random = new Random();
+            int randomNumber = random.Next(0, 10);
+            int number4;
+
+            do {
+                Console.WriteLine("შეიყვანეთ რიცხვი:");
+                bool numberIsGood4 = int.TryParse(Console.ReadLine(), out number4);
+            } while (number4 != randomNumber);
 
             #endregion
         }
