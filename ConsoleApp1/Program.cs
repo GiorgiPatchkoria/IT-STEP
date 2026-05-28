@@ -4,117 +4,24 @@
     {
         static void Main(string[] args)
         {
+            Product product1 = new Product("23523", "Iphone 17 Pro", "Apple iPhone 17 Pro Max 256GB Deep Blue", 4559.99, 100, "Apple", "Phone", true, 10);
 
-            #region Davaleba N1
+            product1.DisplayInfo();
+            Console.WriteLine();
 
-            int[][] points = [[8, 7, 8], [8, 9, 6, 8], [10, 9, 9, 8, 10]];
+            double finalPrice = product1.GetFinalPrice();
+            Console.WriteLine($"Final Price Is {finalPrice}");
+            Console.WriteLine();
 
-            for (int i = 0; i < points.Length; i++)
-            {
-                double sum = 0;
-                double avg = 0;
-                for (int j = 0; j < points[i].Length; j++)
-                {
-                    sum += points[i][j];
-                }
-                avg = sum / points[i].Length;
-                Console.WriteLine($"Average Point of Student {i + 1} is {avg}");
+            Product product2 = new Product("23451", "Lenovo Legion Pro 5", "Lenovo Legion Pro 5 Oled 83LU003FRK, Intel Core Ultra 9 275HX - 24c, Nvidia GeForce RTX 5070 Ti 12GB, 32GB RAM SSD 1TB",
+                7999, 23, "Lenovo", "Laptop", true, 5);
 
-            }
+            product2.DisplayInfo();
+            Console.WriteLine();
 
-            #endregion
-
-            #region Davaleba N2
-
-            Random random = new Random();
-            string[] passcodes = new string[10];
-
-            for (int i = 0; i < passcodes.Length; i++)
-            {
-                string code = "";
-                for (int j = 0; j < 4; j++)
-                {
-                    code += random.Next(0, 10).ToString();
-                }
-                passcodes[i] = code;
-            }
-
-            Console.Write("Enter passcode: ");
-            string passcode = Console.ReadLine();
-
-            bool found = false;
-            for (int i = 0; i < passcodes.Length; i++)
-            {
-                if (passcodes[i] == passcode)
-                {
-                    found = true;
-                    break;
-                }
-            }
-
-            Console.WriteLine(found ? "Correct" : "Wrong");
-
-            #endregion
-
-            #region Davaleba N3
-
-            int[] numbers = { 24, -4, 43, -81, 12, 21, 23, -1, 8, 0 };
-
-            int min = 0;
-            int max = 0;
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] < min)
-                {
-                    min = numbers[i];
-                }
-                else if (numbers[i] > max)
-                {
-                    max = numbers[i];
-                }
-            }
-
-            Console.WriteLine($"Minimum is {min}");
-            Console.WriteLine($"Maximum is {max}");
-
-            #endregion
-
-            #region Davaleba N4
-
-            string[] words = { "Irakli", "Lana", "Giorgi", "Nino" };
-
-            for (int i = 0; i < words.Length; i++)
-            {
-                for (int j = 0; j < words[i].Length; j++)
-                {
-                    Console.WriteLine(words[i][j]);
-                }
-            }
-
-            #endregion
-
-            #region Davaleba N5
-
-            string[] emails = {"giorgi.patchkoriagmail.com", "giorgi@gmail.com", "giorgi.gmail.com", "giorgi@ragac.edu.ge"};
-            for (int i = 0; i < emails.Length; i++)
-            {
-                bool goodEmail = false;
-                string email = emails[i];
-                for (int j = 0; j < emails[i].Length; j++)
-                {
-                    if (emails[i][j] == '@')
-                    {
-                        goodEmail = true;
-                    }
-
-                }
-                if (!goodEmail)
-                {
-                    Console.WriteLine(email);
-                }
-            }
-
-            #endregion
+            Console.WriteLine($"There is {product2.Quantity} items in Stock");
+            product2.AddQuantity(5);
+            Console.WriteLine($"There is {product2.Quantity} items in Stock");
         }
     }
 }
