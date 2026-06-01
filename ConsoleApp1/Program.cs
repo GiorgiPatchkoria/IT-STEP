@@ -4,24 +4,69 @@
     {
         static void Main(string[] args)
         {
-            Product product1 = new Product("23523", "Iphone 17 Pro", "Apple iPhone 17 Pro Max 256GB Deep Blue", 4559.99, 100, "Apple", "Phone", true, 10);
+            string path = @"../../../CarsData.txt";
+            Car[] cars = FillCars(path);
 
-            product1.DisplayInfo();
-            Console.WriteLine();
+            PrintAllCars(cars);
 
-            double finalPrice = product1.GetFinalPrice();
-            Console.WriteLine($"Final Price Is {finalPrice}");
-            Console.WriteLine();
+            Car mostExpensive = MostExpensiveCar(cars);
+            Console.WriteLine("Most expensive car:");
+            mostExpensive.DisplayInfo();
 
-            Product product2 = new Product("23451", "Lenovo Legion Pro 5", "Lenovo Legion Pro 5 Oled 83LU003FRK, Intel Core Ultra 9 275HX - 24c, Nvidia GeForce RTX 5070 Ti 12GB, 32GB RAM SSD 1TB",
-                7999, 23, "Lenovo", "Laptop", true, 5);
+            double averagePrice = AveragePrice(cars);
+            Console.WriteLine($"Average Price of Cars is: {averagePrice}$");
+        }
 
-            product2.DisplayInfo();
-            Console.WriteLine();
+        public static Car[] FillCars(string path)
+        {
+            string[] lines = File.ReadAllLines(path);
+            Car[] cars = new Car[lines.Length];
 
-            Console.WriteLine($"There is {product2.Quantity} items in Stock");
-            product2.AddQuantity(5);
-            Console.WriteLine($"There is {product2.Quantity} items in Stock");
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] parts = lines[i].Split(',');
+                cars[i] = new Car
+                {
+                    Brand = parts[0],
+                    Model = parts[1],
+                    Year = int.Parse(parts[2]),
+                    Price = double.Parse(parts[3]),
+                    Color = parts[4]
+                };
+            }
+            return cars;
+        }
+
+        public static void PrintAllCars(Car[] cars)
+        {
+            foreach (Car car in cars)
+            {
+                double discountPrice = car.GetDiscountedPrice(15);
+                Console.WriteLine($"{car.GetName()} is {car.GetAge()} years old {car.FilterByPrice()} car and after discount its price is {discountPrice}$");
+            }
+        }
+
+        public static Car MostExpensiveCar(Car[] cars)
+        {
+            Car mostExpensive = cars[0];
+            foreach (Car car in cars)
+            {
+                if (car.Price > mostExpensive.Price)
+                {
+                    mostExpensive = car;
+                }
+            }
+            return mostExpensive;
+        }
+
+        public static double AveragePrice(Car[] cars)
+        {
+            double total = 0;
+            foreach (Car car in cars)
+            {
+                total += car.Price;
+            }
+            return total / cars.Length;
         }
     }
 }
