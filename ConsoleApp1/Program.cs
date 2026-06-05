@@ -4,69 +4,40 @@
     {
         static void Main(string[] args)
         {
-            string path = @"../../../CarsData.txt";
-            Car[] cars = FillCars(path);
+            Employ[] employs = new Employ[8];
 
-            PrintAllCars(cars);
+            employs[0] = new Employ("Giorgi", "Patchkoria", new DateTime(2003, 12, 26), Country.Georgia, Gender.Male, Contacts.Phone);
+            employs[1] = new Employ("Xvicha", "Kvaratskhelia", new DateTime(2001, 2, 12), Country.Georgia, Gender.Male, Contacts.Email);
+            employs[2] = new Employ("Thomas", "Müller", new DateTime(1989, 9, 12), Country.Germany, Gender.Male, Contacts.Fax);
+            employs[3] = new Employ("Manuel", "Neuer", new DateTime(1986, 3, 27), Country.Germany, Gender.Male, Contacts.Email);
+            employs[4] = new Employ("Donald", "Trump", new DateTime(1946, 6, 14), Country.USA, Gender.Male, Contacts.Phone);
+            employs[5] = new Employ("Bill", "Gates", new DateTime(1955, 10, 28), Country.USA, Gender.Male, Contacts.Email);
+            employs[6] = new Employ("Junior", "Neymar", new DateTime(1992, 2, 5), Country.Brasil, Gender.Male, Contacts.Phone);
+            employs[7] = new Employ("Nazario", "Ronaldo", new DateTime(1976, 9, 18), Country.Brasil, Gender.Male, Contacts.Fax);
 
-            Car mostExpensive = MostExpensiveCar(cars);
-            Console.WriteLine("Most expensive car:");
-            mostExpensive.DisplayInfo();
 
-            double averagePrice = AveragePrice(cars);
-            Console.WriteLine($"Average Price of Cars is: {averagePrice}$");
-        }
-
-        public static Car[] FillCars(string path)
-        {
-            string[] lines = File.ReadAllLines(path);
-            Car[] cars = new Car[lines.Length];
-
-            for (int i = 0; i < lines.Length; i++)
-            {
-                string[] parts = lines[i].Split(',');
-                cars[i] = new Car
-                {
-                    Brand = parts[0],
-                    Model = parts[1],
-                    Year = int.Parse(parts[2]),
-                    Price = double.Parse(parts[3]),
-                    Color = parts[4]
-                };
+            for (int i = 0; i < employs.Length; i++) {
+                Console.WriteLine($"{employs[i].Name} {employs[i].Surname} is {employs[i].GetAge()} years old");
             }
-            return cars;
+
+            PrintByCountry(employs, Country.Georgia);
         }
 
-        public static void PrintAllCars(Car[] cars)
+        static void PrintByCountry(Employ[] employs, Country country)
         {
-            foreach (Car car in cars)
+            bool found = false;
+            for (int i = 0; i < employs.Length; i++)
             {
-                double discountPrice = car.GetDiscountedPrice(15);
-                Console.WriteLine($"{car.GetName()} is {car.GetAge()} years old {car.FilterByPrice()} car and after discount its price is {discountPrice}$");
-            }
-        }
-
-        public static Car MostExpensiveCar(Car[] cars)
-        {
-            Car mostExpensive = cars[0];
-            foreach (Car car in cars)
-            {
-                if (car.Price > mostExpensive.Price)
+                if (employs[i].Country == country)
                 {
-                    mostExpensive = car;
+                    Console.WriteLine($"{employs[i].Name} {employs[i].Surname} is from {country}");
+                    found = true;
                 }
             }
-            return mostExpensive;
-        }
 
-        public static double AveragePrice(Car[] cars)
-        {
-            double total = 0;
-            foreach (Car car in cars)
-            {
-                total += car.Price;
+            if (!found) { 
+                Console.WriteLine("Not Found");
             }
-            return total / cars.Length;
         }
     }
 }
