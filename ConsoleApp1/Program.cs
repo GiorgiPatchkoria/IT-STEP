@@ -4,40 +4,25 @@
     {
         static void Main(string[] args)
         {
-            Employ[] employs = new Employ[8];
+            int[] numbers = {6, 2, 1, 8, 3, 8, 2, 9, 9, 9, 7};
 
-            employs[0] = new Employ("Giorgi", "Patchkoria", new DateTime(2003, 12, 26), Country.Georgia, Gender.Male, Contacts.Phone);
-            employs[1] = new Employ("Xvicha", "Kvaratskhelia", new DateTime(2001, 2, 12), Country.Georgia, Gender.Male, Contacts.Email);
-            employs[2] = new Employ("Thomas", "Müller", new DateTime(1989, 9, 12), Country.Germany, Gender.Male, Contacts.Fax);
-            employs[3] = new Employ("Manuel", "Neuer", new DateTime(1986, 3, 27), Country.Germany, Gender.Male, Contacts.Email);
-            employs[4] = new Employ("Donald", "Trump", new DateTime(1946, 6, 14), Country.USA, Gender.Male, Contacts.Phone);
-            employs[5] = new Employ("Bill", "Gates", new DateTime(1955, 10, 28), Country.USA, Gender.Male, Contacts.Email);
-            employs[6] = new Employ("Junior", "Neymar", new DateTime(1992, 2, 5), Country.Brasil, Gender.Male, Contacts.Phone);
-            employs[7] = new Employ("Nazario", "Ronaldo", new DateTime(1976, 9, 18), Country.Brasil, Gender.Male, Contacts.Fax);
+            Array arr = new Array(numbers);
+
+            #region Davaleba N1
+            arr.ShowEven();
+            Console.WriteLine();
+            arr.ShowOdd();
+            Console.WriteLine();
+            #endregion
 
 
-            for (int i = 0; i < employs.Length; i++) {
-                Console.WriteLine($"{employs[i].Name} {employs[i].Surname} is {employs[i].GetAge()} years old");
-            }
-
-            PrintByCountry(employs, Country.Georgia);
+            #region Davaleba N3
+            Console.WriteLine($"უნიკალური მნიშვნელობები არის {arr.CountDistinct()}");
+            Console.WriteLine($"მასივში 0 არის {arr.EqualToValue(0)}-ჯერ");
+            Console.WriteLine($"მასივში 2 არის {arr.EqualToValue(2)}-ჯერ");
+            Console.WriteLine($"მასივში 9 არის {arr.EqualToValue(9)}-ჯერ");
+            #endregion
         }
 
-        static void PrintByCountry(Employ[] employs, Country country)
-        {
-            bool found = false;
-            for (int i = 0; i < employs.Length; i++)
-            {
-                if (employs[i].Country == country)
-                {
-                    Console.WriteLine($"{employs[i].Name} {employs[i].Surname} is from {country}");
-                    found = true;
-                }
-            }
-
-            if (!found) { 
-                Console.WriteLine("Not Found");
-            }
-        }
     }
 }
