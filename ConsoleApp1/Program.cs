@@ -2,115 +2,56 @@
 {
     class Program
     {
-        static List<string> students = new List<string>();
-        static Dictionary<string, int> grades = new Dictionary<string, int>();
-
         static void Main(string[] args)
         {
-            while (true)
+            List<Student> students = new List<Student>() {
+                new Student("Giorgi", 3.1),
+                new Student("Nika", 2.9),
+                new Student("Mariam", 2.0),
+                new Student("Saba", 3.8)
+            };
+
+            
+            var studentsWithHighScores = Helper.Where(students, s => s.GPA >= 3);
+            Console.WriteLine($"Students with high GPAs: ");
+            foreach (var student in studentsWithHighScores)
             {
-                Console.WriteLine("\nამოირჩიეთ ოპერაცია:");
-                Console.WriteLine("1. სტუდენტის დამატება");
-                Console.WriteLine("2. სტუდენტის ძებნა");
-                Console.WriteLine("3. ქულის განახლება");
-                Console.WriteLine("4. ყველა სტუდენტის ჩვენება");
-                Console.WriteLine("0. დასრულება");
-                Console.Write("აირჩიეთ ოპერაცია: ");
-
-                string choice = Console.ReadLine();
-
-                switch (choice)
-                {
-                    case "1":
-                        AddStudent();
-                        break;
-                    case "2":
-                        FindStudent();
-                        break;
-                    case "3":
-                        UpdateGrade();
-                        break;
-                    case "4":
-                        ShowAllStudents();
-                        break;
-                    case "0":
-                        return;
-                    default:
-                        Console.WriteLine("არასწორი მნიშვნელობა. აირჩიეთ სწორი ოპერაცია");
-                        break;
-                }
-            }
-        }
-
-        static void AddStudent()
-        {
-            Console.Write("შეიყვანეთ სტუდენტის სახელი: ");
-            string name = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                Console.WriteLine("შეიყვანეთ სწორი სახელი");
-                return;
-            } else if (students.Contains(name))
-            {
-                Console.WriteLine("სტუდენტი უკვე დამატებულია");
-                return;
+                Console.WriteLine(student.Name);
             }
 
-            Console.Write("შეიყვანეთ ქულა: ");
-            if (!int.TryParse(Console.ReadLine(), out int grade))
+            var sorted = Helper.OrderBy(students, (a, b) => a.GPA > b.GPA);
+            Console.WriteLine($"Students sorted by GPA: ");
+            foreach (var student in sorted)
             {
-                Console.WriteLine("შეიყვანეთ სწორი ქულა");
-                return;
+                Console.WriteLine($"{student.Name} - {student.GPA}");
             }
 
-            students.Add(name);
-            grades.Add(name, grade);
-            Console.WriteLine($"{name} დამატებულია სტუდენტების სიაში");
-        }
+            var first = Helper.First(students, s => s.GPA > 3);
+            Console.WriteLine($"First student with GPA > 3 is {first.Name}");
 
-        static void FindStudent()
-        {
-            Console.Write("შეიყვანეთ სტუდენტის სახელი: ");
-            string name = Console.ReadLine();
+            var firstDefault = Helper.FirstOrDefault(students, s => s.GPA > 3.5);
+            Console.WriteLine($"First student with GPA > 3.5 is {firstDefault.Name}");
 
-            if (grades.ContainsKey(name))
+            var single = Helper.Single(students, s => s.Name == "Saba");
+            Console.WriteLine($"There is Student named {single.Name} and his/her GPA is {single.GPA}");
+
+            var singleOrDefault = Helper.SingleOrDefault(students, s => s.Name == "Nika");
+            Console.WriteLine($"There is Student named {singleOrDefault.Name} and his/her GPA is {singleOrDefault.GPA}");
+            
+            bool any = Helper.Any(students, s => s.GPA == 2);
+            Console.WriteLine(any);
+
+            bool all = Helper.All(students, s => s.GPA >= 2);
+            Console.WriteLine(all);
+
+            int count = Helper.Count(students, s => s.GPA >= 3);
+            Console.WriteLine(count);
+
+            List<int> numbers = new List<int>() { 1, 2, 2, 3, 3, 4 };
+            var unique = Helper.Distinct(numbers);
+            foreach (var number in unique)
             {
-                Console.WriteLine($"სტუდენტი: {name}, ქულა: {grades[name]}");
-            }
-            else
-            {
-                Console.WriteLine("სტუდენტი ვერ მოიძებნა");
-            }
-        }
-
-        static void UpdateGrade()
-        {
-            Console.Write("შეიყვანეთ სტუდენტის სახელი: ");
-            string name = Console.ReadLine();
-
-            if (!grades.ContainsKey(name))
-            {
-                Console.WriteLine("სტუდენტი ვერ მოიძებნა");
-                return;
-            }
-
-            Console.Write("შეიყვანეთ ახალი ქულა: ");
-            if (!int.TryParse(Console.ReadLine(), out int newGrade))
-            {
-                Console.WriteLine("შეიყვანეთ სწორი ქულა");
-                return;
-            }
-
-            grades[name] = newGrade;
-            Console.WriteLine($"{name}-ის ქულა განახლდა: {newGrade}");
-        }
-
-        static void ShowAllStudents()
-        {
-            foreach (string name in students)
-            {
-                Console.WriteLine($"სახელი: {name}, ქულა: {grades[name]}");
+                Console.WriteLine(number);
             }
         }
     }
