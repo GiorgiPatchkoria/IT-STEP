@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="Core/Core.csproj" Id="c2633336-16dd-46c2-ad5f-117c324e4521" />
+  <Project Path="Infrasturcture/Infrasturcture.csproj" Id="65747a9b-26a3-4264-97db-d54f6158f1a7" />
+  <Project Path="Services/Services.csproj" Id="71cba2f8-bdd5-4ab3-8e51-a44d5c3b4635" />
+  <Project Path="UI/UI.csproj" Id="880f4d20-d1d6-48a2-93e9-1b773a4d20da" />
 </Solution>
