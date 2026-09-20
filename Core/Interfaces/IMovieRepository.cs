@@ -8,5 +8,8 @@ namespace Core.Interfaces
         Task AddMovieAsync(Movie movie);
         Task AddStudioAsync(Studio studio);
         Task AddCountryAsync(Country country);
+        Task<Movie> GetMovieByIdAsync(int id);
+        Task DeleteMovieAsync(Movie movie);
+        Task UpdateMovieAsync(Movie movie);
     }
 }

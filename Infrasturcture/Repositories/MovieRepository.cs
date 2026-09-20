@@ -12,12 +12,14 @@ namespace Infrasturcture.Repositories
         {
             _movieDbContext = movieDbContext;
         }
+
         public async Task<ICollection<Movie>> GetAllMoviesAsync()
         {
             return await _movieDbContext.Movies
                 .Include(m => m.Studio)
                 .ToListAsync();
         }
+
         public async Task AddMovieAsync(Movie movie)
         {
             await _movieDbContext.Movies.AddAsync(movie);
@@ -33,6 +35,25 @@ namespace Infrasturcture.Repositories
         public async Task AddCountryAsync(Country country)
         {
             await _movieDbContext.Countries.AddAsync(country);
+            await _movieDbContext.SaveChangesAsync();
+        }
+
+        public async Task<Movie> GetMovieByIdAsync(int id)
+        {
+            return await _movieDbContext.Movies
+                .Include(m => m.Studio)
+                .FirstOrDefaultAsync(m => m.Id == id);
+        }
+
+        public async Task DeleteMovieAsync(Movie movie)
+        {
+            _movieDbContext.Movies.Remove(movie);
+            await _movieDbContext.SaveChangesAsync();
+        }
+
+        public async Task UpdateMovieAsync(Movie movie)
+        {
+            _movieDbContext.Movies.Update(movie);
             await _movieDbContext.SaveChangesAsync();
         }
     }
