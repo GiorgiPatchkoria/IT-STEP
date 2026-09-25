@@ -11,5 +11,10 @@ namespace Core.Interfaces
         Task<Movie> GetMovieByIdAsync(int id);
         Task DeleteMovieAsync(Movie movie);
         Task UpdateMovieAsync(Movie movie);
+
+        Task<ICollection<Movie>> SearchMoviesByStudioAsync(int year, string studioName, int minimumActorCount);
+        Task<ICollection<Movie>> SearchMoviesByCountryAsync(string countryName, int minimumYear, int maximumActorCount);
+
+        Task<ICollection<Movie>> SearchMoviesAdvancedAsync(int fromYear, int toYear, string countryName, string titleText, int minimumActorCount);
     }
 }

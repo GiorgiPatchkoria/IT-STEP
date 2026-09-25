@@ -11,5 +11,8 @@ namespace Services.Interfaces
         Task AddCountryAsync(Country country);
         Task DeleteMovieAsync(int id);
         Task UpdateMovieAsync(UpdateMovieDTO movie, int id);
+        Task<ICollection<SearchMovieDTO>> SearchMoviesByCountryAsync(string countryName, int minimumYear, int maximumActorCount);
+        Task<ICollection<SearchMovieDTO>> SearchMoviesByStudioAsync(int year, string studioName, int minimumActorCount);
+        Task<ICollection<SearchMovieDTO>> SearchMoviesAdvancedAsync(int fromYear, int toYear, string countryName, string titleText, int minimumActorCount);
     }
 }
