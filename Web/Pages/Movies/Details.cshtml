@@ -1,0 +1,45 @@
+﻿@page
+@model Web.Pages.Movies.DetailsModel
+@{
+    ViewData["Title"] = "Movie Details";
+}
+
+<div class="movie-details-page">
+    <div class="mb-4">
+        <a class="btn btn-outline-secondary" asp-area="" asp-page="/Movies/Index">
+            &larr; Back to Movies
+        </a>
+    </div>
+
+    <div class="card movie-details-card shadow-sm">
+        <div class="card-body p-4 p-md-5">
+            <div class="mb-4">
+                <span class="text-uppercase text-muted small fw-semibold">Movie Details</span>
+                <h1 class="display-6 fw-bold mt-2 mb-0">@Model.Movie.Title</h1>
+            </div>
+
+            <div class="movie-details-grid">
+                <div class="movie-detail-item">
+                    <span class="movie-detail-label">Title: </span>
+                    <span class="movie-detail-value">@Model.Movie.Title</span>
+                </div>
+
+                <div class="movie-detail-item">
+                    <span class="movie-detail-label">Release Year: </span>
+                    <span class="movie-detail-value">@Model.Movie.ReleaseYear</span>
+                </div>
+
+                <div class="movie-detail-item">
+                    <span class="movie-detail-label">Studio: </span>
+                    <span class="movie-detail-value">@Model.Movie.StudioName</span>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a class="btn btn-primary" asp-area="" asp-page="/Movies/Index">
+                    Back to Movies
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

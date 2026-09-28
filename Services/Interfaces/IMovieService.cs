@@ -6,6 +6,7 @@ namespace Services.Interfaces
     public interface IMovieService
     {
         Task<ICollection<MovieDTO>> GetAllMoviesAsync();
+        Task<MovieDTO> GetMovieByIdAsync(int id);
         Task AddMovieAsync(CreateMovieDTO movie);
         Task AddStudioAsync(Studio studio);
         Task AddCountryAsync(Country country);

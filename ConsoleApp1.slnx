@@ -3,4 +3,5 @@
   <Project Path="Infrasturcture/Infrasturcture.csproj" Id="65747a9b-26a3-4264-97db-d54f6158f1a7" />
   <Project Path="Services/Services.csproj" Id="71cba2f8-bdd5-4ab3-8e51-a44d5c3b4635" />
   <Project Path="UI/UI.csproj" Id="880f4d20-d1d6-48a2-93e9-1b773a4d20da" />
+  <Project Path="Web/Web.csproj" Id="db889f43-03cd-4b7b-a267-9377a2044e9c" />
 </Solution>

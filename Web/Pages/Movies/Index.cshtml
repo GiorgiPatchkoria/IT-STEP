@@ -1,0 +1,52 @@
+﻿@page
+@model Web.Pages.Movies.IndexModel
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<div class="movies-page">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Movies</h1>
+        <p class="text-muted">Browse our movie collection and view the details of each film.</p>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var movie in Model.Movies)
+        {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 movie-card shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <h2 class="card-title h4 mb-3">
+                            <a class="movie-title-link"
+                               asp-area=""
+                               asp-page="/Movies/Details"
+                               asp-route-id="@movie.Id">
+                                @movie.Title
+                            </a>
+                        </h2>
+
+                        <div class="movie-info mb-4">
+                            <p class="mb-2">
+                                <span class="fw-semibold">Release Year:</span>
+                                @movie.ReleaseYear
+                            </p>
+                            <p class="mb-0">
+                                <span class="fw-semibold">Studio:</span>
+                                @movie.StudioName
+                            </p>
+                        </div>
+
+                        <div class="mt-auto">
+                            <a class="btn btn-primary w-100"
+                               asp-area=""
+                               asp-page="/Movies/Details"
+                               asp-route-id="@movie.Id">
+                                See Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
